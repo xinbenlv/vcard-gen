@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+      "target": "ES2022",
+      "module": "CommonJS",
+      "outDir": "./dist",
+      "strict": false,
+      "esModuleInterop": true,
+      "sourceMap": true,
+      "moduleResolution": "node" // or "nodenext"
+    },
+    "exclude": ["node_modules"]
+}
