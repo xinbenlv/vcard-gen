@@ -1,6 +1,7 @@
 import vCardsJS from 'vcards-js';
-const fs = require('fs')
-const fg = require('fast-glob');
+import express from 'express';
+import fs from 'fs';
+import fg from 'fast-glob';
 
 const main = async () => {
     function loadJSONFromFile(filePath: string): any {
@@ -8,8 +9,9 @@ const main = async () => {
         return JSON.parse(jsonString);
     }
     const jsonFiles = await fg(['dataset/*.json'], { dot: true });
+
+    const vCardDb = {};
     for (const filename of jsonFiles) {
-        console.log(`Name XXX = `, filename);
         const name = filename.split("/")[1].split(".")[0];
         const json = loadJSONFromFile(filename);
         // https://www.npmjs.com/package/vcards-js
@@ -25,11 +27,30 @@ const main = async () => {
             vCard[key] = json.vCard[key];
           }
         }
-    
-        //save to file
-        vCard.saveToFile(`output/${name}.vcf`);
-        
+
+        vCardDb[name] = vCard;
     }
+
+    const express = require('express')
+    const app = express()
+    const port = 3000
+
+    app.get('/:user.vcf', function (req, res, next) {
+        let user = req.params.user;
+        if (user in vCardDb) { 
+            const vCard = vCardDb[user];
+            res.status(200)
+            .attachment(`${user}.vcf`)
+            .send(vCard.getFormattedString())
+        } else {
+            res.status(404).send('Sorry, we cannot find that!');
+        }
+    });
+
+    
+    app.listen(port, () => {
+      console.log(`Example app listening on port ${port}`)
+    })
 }
 
 main().then().catch(console.error);

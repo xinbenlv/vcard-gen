@@ -2,10 +2,12 @@
   "name": "vcard-gen",
   "version": "1.0.0",
   "scripts": {
-    "start": "ts-node main.ts"
+    "dev": "ts-node main.ts",
+    "start": "ts-node server.ts"
   },
   "license": "MIT",
   "dependencies": {
+    "express": "^4.18.2",
     "fast-glob": "^3.2.12",
     "glob": "^10.2.7",
     "image-to-base64": "^2.2.0",
