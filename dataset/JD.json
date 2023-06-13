@@ -1,0 +1,23 @@
+{
+  "vCard": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "organization": "Awesome Inc.",
+    "photo": {
+      "embedFromFile": "./dataset/JD.png"
+    },
+    "cellPhone": "123-456-7890",
+    "email": "johndoe@gmail.com",
+    "workEmail": "me@johndoe.com",
+    "title": "CEO",
+    "url": "https://johndoe.com",
+    "note": "An experienced executive in a large company",
+    "socialUrls": {
+      "Twitter": "https://twitter.com/JohnDoe",
+      "LinkedIn": "https://linkedin.com/in/JohnDoe",
+      "WhatsApp": "https://wa.me/1234567890",
+      "Telegram": "https://t.me/JohnDoe"
+    },
+    "version": "3.0"
+  }
+}
